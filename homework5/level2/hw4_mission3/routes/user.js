@@ -24,7 +24,7 @@ router.post('/signup', async (req, res) => {
     password,
     email
   } = req.body;
- // request data 확인 - 없다면 Null Value 반환
+  // request data 확인 - 없다면 Null Value 반환
   if (!id || !name || !password || !email) {
     res.status(statusCode.BAD_REQUEST)
       .send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));

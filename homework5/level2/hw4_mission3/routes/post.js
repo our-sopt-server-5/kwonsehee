@@ -36,7 +36,7 @@ router.post('/', async(req,res)=>{
         .send(util.success(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
     }
     var time = moment();
-    const created_at = await time.format('YYYY-MM-DD');
+    const created_at = time.format('YYYY-MM-DD');
     const ct=  await post.create(author,title,content,created_at);
     if(!ct){
         res.status(statusCode.BAD_REQUEST)
@@ -54,14 +54,14 @@ router.put('/:idx', (req,res)=> {
         content
     } = req.body;
     var time = moment();
-    const created_at = await time.format('YYYY-MM-DD');
+    const created_at = time.format('YYYY-MM-DD');
 
     if(!idx){
         res.status(statusCode.BAD_REQUEST)
         .send(util.fail(statusCode.BAD_REQUEST, resMessage.NO_USER));
     }
     const updatePost = {author: author, title: title, content: content};
-    const update=await post.update(idx,updatePost);
+    const update= post.update(idx,updatePost);
     update.created_at = created_at;
     if(!update){
         return res.status(statusCode.DB_ERROR)
@@ -88,3 +88,5 @@ router.delete('/:idx', async (req,res)=> {
     res.status(statusCode.OK)
     .send(util.success(statusCode.NO_CONTENT, resMessage.DELETE_SUCCESS));
 });
+
+module.exports = router;

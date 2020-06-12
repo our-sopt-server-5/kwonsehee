@@ -25,6 +25,7 @@ const post = {
                 return result;
             }catch(err){
                 console.log('err:', err);
+                throw err;
             }
     },
     create: async(author, title, content) => {
